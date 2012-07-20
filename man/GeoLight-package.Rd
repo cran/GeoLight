@@ -14,6 +14,11 @@ This is a summary of all features of \bold{\code{GeoLight}}, a \code{R}-package 
 We refrain from giving detailed background on the (several steps of) analysis of light-based geolocator data here but strongly recommend the key-publications below.
 }
 
+\section{Updates}{
+We advise all users to update their installation of \bold{\code{GeoLight}} regularly.
+
+Type \code{news(package="GeoLight")} to read news documentation about changes to the recent and all previous version of the package
+}
 
 \section{Important Notes}{
 Most functions in \bold{\code{GeoLight}} require the same initial units and mostly the format and object type is mandatory:
@@ -49,10 +54,12 @@ In the following, we give a summary of the main functions and sample datasets in
 \tabular{rll}{
 \tab \code{\link{gleTrans}} \tab transformation of already defined twilight events* \cr
 \tab \code{\link{glfTrans}} \tab transformation of light intensity measurements over time* \cr
+\tab \code{\link{luxTrans}} \tab transformation of light intensity measurements over time** \cr
 \tab \code{\link{twilightCalc}} \tab definition of twilight events (\emph{sunrise, sunset}) from light intensity measurements \cr
 }
 
-* written for data recorded by geolocator devices from the \bold{Swiss Ornithological Institute}.
+* written for data recorded by geolocator devices from the \bold{Swiss Ornithological Institute}
+* written for data recorded by geolocator devices from \bold{Migrate Technology Ltd}
 }
 
 

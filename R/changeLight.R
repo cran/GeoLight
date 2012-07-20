@@ -1,12 +1,5 @@
-# Change Point Model to distinguish between residency and movement behaviour in geolocation by light
-# Based on R Package 'Changepoint'
-# ---------------------------------------------------------------------------
-# Author: Simeon Lisovski, April 2012
-# ---------------------------------------------------------------------------
-
-
-changeLight <- function(tFirst,tSecond,type,rise.prob=0.5,set.prob=NA,days=5,plot=TRUE,summary=TRUE){
-
+changeLight <- function(tFirst,tSecond,type,quantile=0.6,rise.prob=NA,set.prob=NA,days=5,plot=TRUE,summary=TRUE)
+{
 	# start: Sunrise and Sunset
 	rtype <- rep(2,length(type)); rtype[type==2] <- 1
 	twE1  <- data.frame(ev=c(as.character(tFirst),as.character(tSecond)),t=c(type,rtype))
@@ -34,6 +27,13 @@ N2 <- seq(1,length(set))
 	tab2 <- merge(data.frame(N=N2,prob=NA),data.frame(N=CPs2$cps[1,],prob=CPs2$cps[2,]),by.x="N",by.y="N",all.x=T)[,-2]
 		tab2[is.na(tab2[,2]),2] <- 0
 	# end: Change Point Model
+	
+# quantile calculation
+if(is.numeric(quantile))
+{
+rise.prob<-as.numeric(round(as.numeric(quantile(tab1[tab1[,2]!=0,2],probs=quantile,na.rm=TRUE)),digits=5))
+set.prob<-as.numeric(round(as.numeric(quantile(tab2[tab2[,2]!=0,2],probs=quantile,na.rm=TRUE)),digits=5))
+}
 	
 if(plot==T){
 	layout(matrix(c(4,1,2,3),nrow=4,byrow=T),heights=c(0.5,1,0.5,0.5))
