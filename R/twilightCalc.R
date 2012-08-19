@@ -7,7 +7,7 @@ twilightCalc <- function(datetime,light,LightThreshold=TRUE,maxLight=NULL,ask=TR
     # Basic level
     r <- as.data.frame(table(bas$light))
     nr <- as.numeric(which.max(r$Freq[as.numeric(r[,1])<mean(bas$light)]))
-    LightThreshold <- (as.numeric(r[nr,1]))+3 
+    LightThreshold <- (as.numeric(as.character(r[nr,1])))+3 
   } else {
     LightThreshold <- as.numeric(LightThreshold)
     min <- min(bas$light)
@@ -17,6 +17,7 @@ twilightCalc <- function(datetime,light,LightThreshold=TRUE,maxLight=NULL,ask=TR
   ind1 <- which((bas$light[-nrow(bas)] < LightThreshold & bas$light[-1] > LightThreshold) | (bas$light[-nrow(bas)] > LightThreshold & bas$light[-1] < LightThreshold) | bas$light[-nrow(bas)] == LightThreshold)
   
   bas1 <- cbind(bas[ind1,],bas[ind1+1,])
+  		  bas1 <- bas1[bas1[,2]!=bas1[,4],]
   
   x1 <- as.numeric(unclass(bas1[,1])); x2 <- as.numeric(unclass(bas1[,3]))
   y1 <- bas1[,2]; y2 <- bas1[,4]

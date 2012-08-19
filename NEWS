@@ -1,4 +1,19 @@
-	CHANGES IN GeoLight VERSION 1.01
+CHANGES IN GeoLight VERSION 1.02
+
+
+OVERVIEW 
+
+   o We thank all users providing helpful comments and helping to identify bugs
+   o Some modifications to internal code.
+  
+NEW FUNCTIONS
+
+   	o lightFilter
+	Filter to remove noise in light intensity measurements during the night
+
+
+
+CHANGES IN GeoLight VERSION 1.01
 
 
 OVERVIEW 

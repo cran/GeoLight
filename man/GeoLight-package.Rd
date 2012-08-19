@@ -55,6 +55,7 @@ In the following, we give a summary of the main functions and sample datasets in
 \tab \code{\link{gleTrans}} \tab transformation of already defined twilight events* \cr
 \tab \code{\link{glfTrans}} \tab transformation of light intensity measurements over time* \cr
 \tab \code{\link{luxTrans}} \tab transformation of light intensity measurements over time** \cr
+\tab \code{\link{lightFilter}} \tab filter to remove noise in light intensity measurements during the night \cr
 \tab \code{\link{twilightCalc}} \tab definition of twilight events (\emph{sunrise, sunset}) from light intensity measurements \cr
 }
 
