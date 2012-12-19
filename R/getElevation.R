@@ -38,14 +38,14 @@ getElevation <- function(tFirst,tSecond,type,known.coord,plot=TRUE) {
  	SElev <- i.sunelevation(coord[1],coord[2],as.numeric(substring(Tw,1,4)),as.numeric(substring(Tw,6,7)),
          as.numeric(substring(Tw,9,10)),as.numeric(substring(Tw,12,13)),as.numeric(substring(Tw,15,16)),0)
  	
- 	
- 	par(mfrow=c(1,2),oma=c(0.2,0.2,2,0.2))
+ 	layout(matrix(c(1,2,3,3),nrow=2,ncol=2,byrow=TRUE))
+ 	par(oma=c(0.2,0.2,2,0.2))
  	par(mar=c(6,4,6,1),bty="n",yaxt="n",xaxt="s")
  	
  	plot(SElev[as.numeric(substring(Tw,12,13)) %in% 0:12], 
-         rep(1,length(SElev[as.numeric(substring(Tw,12,13)) %in% 0:12])),pch=20,
+         jitter(rep(1,length(SElev[as.numeric(substring(Tw,12,13)) %in% 0:12])),0.2),pch=20,
          cex=1,xlim=c(-10,max(SElev)+3),ylim=c(0.9,1.1),ylab="",xlab="",main="Sunrise",cex.main=1.1,font.main=3)
- 	mtext("Light intensity threshold",side=2,cex=1.1,font=6)
+ 	mtext("Light intensity threshold (jitter)",side=2,cex=1.1,font=6)
  	arrows(-9.8,1,-8.64,1,length=0.1)
  	abline(v=-6,lty=2,lwd=0.3)
  	abline(v=degElevation,lty=2,lwd=2,col="orange")
@@ -53,7 +53,7 @@ getElevation <- function(tFirst,tSecond,type,known.coord,plot=TRUE) {
  	
  	par(mar=c(6,1,6,3),bty="n",yaxt="n",xaxt="s")
  	plot(SElev[as.numeric(substring(Tw,12,13)) %in% 13:23], 
-       rep(1,length(SElev[as.numeric(substring(Tw,12,13)) %in% 13:23])),
+       jitter(rep(1,length(SElev[as.numeric(substring(Tw,12,13)) %in% 13:23])),0.2),
        pch=1,cex=0.7,xlim=c(max(SElev)+3,-10),ylim=c(0.9,1.1),xlab="",main="Sunset",cex.main=1.1,font.main=3)
  	abline(v=-6,lty=2,lwd=0.3)
  	abline(v=degElevation,lty=2,lwd=2,col="orange")
@@ -62,8 +62,15 @@ getElevation <- function(tFirst,tSecond,type,known.coord,plot=TRUE) {
        c("- 6 degrees","",paste("getElevation\n",round(degElevation-0.025,3)," degrees",sep="")),bg="white",box.col="white",cex=.9)
  	
  	mtext("Twilight times over sun elevation angles",line=0, adj=0.52, cex=1.5,col="black", outer=TRUE)
- 	mtext("Sun elevation angle (degrees)",SOUTH<-1,line=-3.2, adj=1,at=0.65, cex=1.1,col="black", outer=TRUE)
  	
+ 	par(bty="o",mar=c(6,6,1,1),yaxt="s")
+ 	t <- seq(tab$tFirst[1],tab$tSecond[nrow(tab)],by=60)
+ 	plot(t,i.sunelevation(coord[1],coord[2],as.POSIXlt(t)$year+1900,as.POSIXlt(t)$mo+1,as.POSIXlt(t)$mday,as.POSIXlt(t)$hour,as.POSIXlt(t)$min,as.POSIXlt(t)$sec),type="l",
+ 		xaxt="n",xlab="",ylab="Sun elevation angle")
+ 	abline(h=degElevation,lty=2,col="grey80")
+ 	points(c(tab$tFirst,tab$tSecond),rep(degElevation,(nrow(tab)*2)),pch="+",col="darkgreen",cex=2)
+	t2 <- seq(tab$tFirst[1],tab$tSecond[nrow(tab)],by=2*24*60*60)
+	axis(1,at=t2,labels=as.character(as.Date(t2)))
  	}
  
  return(degElevation - 0.025)

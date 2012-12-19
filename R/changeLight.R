@@ -12,8 +12,22 @@ changeLight <- function(tFirst,tSecond,type,quantile=0.6,rise.prob=NA,set.prob=N
 	rise <- as.numeric(substring(twE$ev[twE$t==1],12,13)) +  as.numeric(substring(twE$ev[twE$t==1],15,16))/60
 	set  <- as.numeric(substring(twE$ev[twE$t==2],12,13)) +  as.numeric(substring(twE$ev[twE$t==2],15,16))/60
 	# end: Sunrise and Sunset
-
 	
+	cor.rise <- rep(NA, 24)
+	for(i in 0:23){
+		cor.rise[i+1] <- max(abs((c(rise[1],rise)+i)%%24 - 
+		            (c(rise,rise[length(rise)])+i)%%24),na.rm=T)
+	}
+	rise <- (rise + (which.min(round(cor.rise,2)))-1)%%24
+
+	cor.set <- rep(NA, 24)
+	for(i in 0:23){
+		cor.set[i+1] <- max(abs((c(set[1], set)+i)%%24 - 
+		            (c(set, set[length(set)])+i)%%24),na.rm=T)
+	}
+	set <- (set + (which.min(round(cor.set,2)))-1)%%24
+
+
 	# start: Change Point Model
 	# max. possible Change Points (length(sunrise)/2)
 	CPs1 <- binseg.mean.cusum(rise, Q=length(rise)/2, pen=0.001)
@@ -46,6 +60,7 @@ if(plot==T){
 	mtext("Sunset (blue)",4,line=2.7,cex=1)
 	axis(1,at=seq(min(twE[,1]),max(twE[,1]),by=(10*24*60*60)),labels=F)
 	axis(1,at=seq(min(twE[,1]),max(twE[,1]),by=(30*24*60*60)),lwd.ticks=2,labels=as.Date(seq(min(twE[,1]),max(twE[,1]),by=(30*24*60*60))),cex.axis=1)
+	
 	
 	par(mar=c(1.5,4.5,0.8,5),bty="n")
 	plot(rep(twE$ev[twE$t==1][1],2),c(0,tab1[1,2]),type="l",lwd=3,col="red",ylab="",xaxt="n",xlim=c(min(twE[,1]),max(twE[,1])),ylim=c(0,max(na.omit(c(tab1[,2],tab2[,2])))))

@@ -51,12 +51,12 @@ if(points==TRUE){
 	}
 
 for(j in 1:sites){
-	X <- na.omit(coord[site==j,])
-	
-	hpts <- chull(na.omit(coord[site==j,]))
-	hpts <- c(hpts,hpts[1])
-	lines(X[hpts,],lty=lty,lwd=lwd,col=col[j])
-}
+      X <- na.omit(coord[site==j,])
+      
+      hpts <- chull(na.omit(coord[site==j,]))
+      hpts <- c(hpts,hpts[1])
+      lines(coord[hpts,],lty=lty,lwd=lwd,col=col[j])
+    }
 		
 legend("bottomright",c(letters[1:nr.sites]),pch=pch, col=colors[1:nr.sites])
 

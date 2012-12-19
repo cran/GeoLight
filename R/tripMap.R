@@ -1,5 +1,5 @@
 tripMap <-
-function(coord,equinox=TRUE,map.range=c("EuroAfrica","AustralAsia","America","World"),xlim=NULL,ylim=NULL,xlab="Longitude",ylab="Latitude",col="tomato2",main=NULL,add=FALSE) {
+function(coord,equinox=TRUE,map.range=c("EuroAfrica","AustralAsia","America","World"),xlim=NULL,ylim=NULL,xlab="Longitude",ylab="Latitude",col="tomato2",main=NULL,legend=TRUE,add=FALSE) {
 
 
 	if(sum(map.range==c("EuroAfrica","AustralAsia","America","World"))==4) {
@@ -54,9 +54,9 @@ if(equinox==TRUE){
 
 		lines(c(coord[start,1],coord[end,1]),c(coord[start,2],coord[end,2]),col="blue",lwd=3,lty=1)
 		}
-legend("bottomright",lty=c(0,1,1),pch=c(3,-1,-1),lwd=c(1,0.5,3),col=c("black",col,"blue"),c("Positions","Trip","Equinox"),bty="n",bg="grey90",border="grey90",cex=0.8)
+if(legend==TRUE) legend("bottomright",lty=c(0,1,1),pch=c(3,-1,-1),lwd=c(1,0.5,3),col=c("black",col,"blue"),c("Positions","Trip","Equinox"),bty="n",bg="grey90",border="grey90",cex=0.8)
 } else {
-	legend("bottomright",lty=c(0,1),pch=c(3,-1),lwd=c(1,0.5),col=c("black",col,"blue"),c("Positions","Trip"),bty="n",bg="grey90",border="grey90",cex=0.8)
+	if(legend==TRUE) legend("bottomright",lty=c(0,1),pch=c(3,-1),lwd=c(1,0.5),col=c("black",col,"blue"),c("Positions","Trip"),bty="n",bg="grey90",border="grey90",cex=0.8)
 	}	
 
 }

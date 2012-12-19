@@ -4,7 +4,7 @@
 \description{Draw a map (from the \code{R} Package \code{maps}) with calculated positions connected by a line}
 \usage{tripMap(coord,equinox,
 	map.range=c("EuroAfrica","AustralAsia","America","World"),
-	xlim,ylim,xlab,ylab,col,main,add)}
+	xlim,ylim,xlab,ylab,col,main, legend,add)}
 \arguments{
   \item{coord}{a \code{SpatialPoints} or \code{matrix} object, containing x and y coordinates (in that order).}
   \item{equinox}{logical; if \code{TRUE}, the equinox period(s) is shown as a broken blue line.}
@@ -15,6 +15,7 @@
  \item{ylab}{a title for the y axis.} 
  \item{col}{colour code or name for the trip line (default equals red).} 
  \item{main}{map title}
+ \item{legend}{\code{logical}; if \code{TRUE}, a legend will be added to the plot.}
  \item{add}{\code{logical}; if \code{TRUE}, positions will be added to an existing plot.}
 }
 \author{Simeon Lisovski}

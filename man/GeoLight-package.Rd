@@ -60,7 +60,7 @@ In the following, we give a summary of the main functions and sample datasets in
 }
 
 * written for data recorded by geolocator devices from the \bold{Swiss Ornithological Institute}
-* written for data recorded by geolocator devices from \bold{Migrate Technology Ltd}
+** written for data recorded by geolocator devices from \bold{Migrate Technology Ltd}
 }
 
 
@@ -86,7 +86,8 @@ See Lisovski \emph{et al.} 2012 for all implemented calibration methods.
 \section{IV. Positioning}{
 \tabular{rll}{
 \tab \code{\link{coord}} \tab main function to derive a \code{matrix} of spatial coordinates \cr
-\tab \code{\link{distanceFilter}} \tab filter function to reduce unrealistic positions \cr
+\tab \code{\link{distanceFilter}} \tab filter function to reduce unrealistic positions (not recommended, since the filtering ignore positioning error) \cr
+\tab \code{\link{loessFilter}} \tab filter function to define outliers in sunrise and sunset times (defined twilight events) \cr
 }
 }
 
@@ -115,12 +116,13 @@ See Lisovski \emph{et al.} 2012 for all implemented calibration methods.
 \code{gstat} \cr
 \code{trip} \cr
 \code{tripEstimation} \cr
+\code{move} \cr
 ...
 }
 
 
 \section{Acknowledgements}{
-Steffen Hahn, Felix Liechti, Fraenzi Korner-Nievergelt, Andrea Koelzsch, Erich Baechler, Eli Bridge, Michael Sumner, Andrew Parnell, Richard Inger
+Steffen Hahn, Felix Liechti, Fraenzi Korner-Nievergelt, Andrea Koelzsch, Eldar Rakhimberdiev, Michael Sumner, Erich Baechler, Eli Bridge,  Andrew Parnell, Richard Inger
 }
 
 \section{Authors}{
@@ -140,7 +142,9 @@ Hill, C. & Braun, M.J. (2001) Geolocation by light level - the next step: Latitu
 
 Hill, R.D. (1994) Theory of geolocation by light levels. \emph{Elephant Seals: Population Ecology, Behavior, and Physiology} (eds L. Boeuf, J. Burney & R.M. Laws), pp. 228-237. University of California Press, Berkeley.
 
-Lisovski, S., Hewson, C.M, Klaassen, R.H.G., Korner-Nievergelt, F., Kristensen, M.W & Hahn, S. (2012) Geolocation by light: Accuracy and precision affected by environmental factors. \emph{Methods in Ecology and Evolution}, DOI: 10.1111/j.2041-210X.2012.00185.x.
+Lisovski, S. and Hahn, S. (2012) GeoLight - processing and analysing light-based geolocator data in R. \emph{Methods in Ecology and Evolution}, doi: 10.1111/j.2041-210X.2012.00248.x
+
+Lisovski, S., Hewson, C.M, Klaassen, R.H.G., Korner-Nievergelt, F., Kristensen, M.W & Hahn, S. (2012) Geolocation by light: Accuracy and precision affected by environmental factors. \emph{Methods in Ecology and Evolution}, doi: 10.1111/j.2041-210X.2012.00185.x
 
 Wilson, R.P., Ducamp, J.J., Rees, G., Culik, B.M. & Niekamp, K. (1992) Estimation of location: global coverage using light intensity. \emph{Wildlife telemetry: remote monitoring and tracking of animals} (eds I.M. Priede & S.M. Swift), pp. 131-134. Ellis Horward, Chichester.
 }

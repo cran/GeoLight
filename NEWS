@@ -1,3 +1,42 @@
+CHANGES IN GeoLight VERSION 1.03
+
+OVERVIEW 
+
+   o We thank Eli Brigde, Michael Sumner and Eldar Rakhimberdiev for fruitful comments during a workshop.
+   o Version 1.03 provides one new filter function and some additional graphical output
+   o With the help of the users we could remove some bugs and improve the package significantly
+   
+ NEW FUNCTIONS
+
+   	o loessFilter
+	Filter to remove outliers based on residuals from a local
+	polynomial regression fitting process (loess). 
+
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+	o   twilightCalc
+	A new argument was added to the twilightCalc function: preSelection.
+	If preSelection=TRUE a routine will go trough all times where the light
+	intensity crosses the light threshold. Only the earliest in the morning
+	and the latest in the evening will be set as "choosen" for further
+	graphical examination. This usually results in a much faster interactive
+	process especially if the light intensity fluctuates much around the 
+	light threshold.	
+	
+	
+	o   getElevation
+	In addition to the already existing graph where the user gets an
+	overview of all defined twilight times within the calibration period
+	as well as the deviation from the optimal sun elevation, another plot shows
+	the sun elevaion curves for the calibration period at the known position
+	and the defined twilight events. The two graphs are highly redundant but
+	we think that the new graph gives a better impression about the distribution
+	of the defined twilight events and whether single twilight events should
+	be excluded from the calibration period (i.e. twilight events which do not
+	represent the sunrise or sunset).
+
+
 CHANGES IN GeoLight VERSION 1.02
 
 

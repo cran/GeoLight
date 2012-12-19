@@ -21,6 +21,8 @@
 
 \value{A \code{list} with probabilities for \emph{sunrise} and \emph{sunset} the user settings of the probabilities and the resulting stationary periods given as a \code{vector}, with the residency sites as positiv numbers in ascending order (0 indicate movement/migration).}
 
+\note{The sunrise and/or sunset times shown in the graph (if \code{plot=TRUE}) represent hours of the day. However if one or both of the twilight events cross midnight during the recording period the values will be transformed to avoid discontinuity.}
+
 \seealso{\code{\link{changepoint}}, \code{\link{binseg.mean.cusum}}}
 
 \references{

@@ -2,7 +2,7 @@ glfTrans <-
 function(file="/path/file.glf") {
 
 	
-glf1 <- read.table(file,sep="\t",skip=5,col.names=c("datetime","light","1","2","3")) # read file
+glf1 <- read.table(file,sep="\t",skip=6,col.names=c("datetime","light","1","2","3")) # read file
  
 # Date transformation
  	year   <- as.numeric(substring(glf1$datetime,7,10))
